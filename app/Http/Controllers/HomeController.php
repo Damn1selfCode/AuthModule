@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\PaypalService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
@@ -15,7 +16,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -34,7 +35,10 @@ class HomeController extends Controller
         $planesPaypal = Cache::remember('planes', 60, function () {
             return $this->planes();
         });
-        return view('welcome', compact('planesPaypal'));
+
+
+
+        return view('welcome', compact('planesPaypal',));
     }
 
 

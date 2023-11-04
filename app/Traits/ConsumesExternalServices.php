@@ -99,14 +99,40 @@ trait ConsumesExternalServices
         $data = json_decode($response->getBody(), true);
 
 
-        if (isset($data['links'])) {
-            foreach ($data['links'] as $link) {
-                if ($link['rel'] === 'approve') {
-                    $urlAprobacion = $link['href'];
-                }
-            }
-        }
+        return $data;
+    }
 
-        return $urlAprobacion;
+
+    public function Desuscribirse($planACancelar)
+    {
+
+        $client = new Client();
+
+        $headers = [
+            'Authorization' => $this->GenerarToken(),
+            'Content-Type' => 'application/json',
+        ];
+
+        $body = [
+            "reason" => "SUB-CANCELADA"
+        ];
+        $url = $this->baseUri . '/v1/billing/subscriptions/' . $planACancelar . '/cancel';
+
+        $jsonBody = json_encode($body, JSON_UNESCAPED_SLASHES);
+
+        $response = $client->post($url, ['headers' => $headers, 'body' => $jsonBody]);
+
+        $data = json_decode($response->getBody(), true);
+
+
+        // if (isset($data['links'])) {
+        //     foreach ($data['links'] as $link) {
+        //         if ($link['rel'] === 'approve') {
+        //             $urlAprobacion = $link['href'];
+        //         }
+        //     }
+        // }
+
+        return $data;
     }
 }

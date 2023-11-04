@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('plans', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('slug')->unique();
-            $table->integer('price')->unsigned();// sin decimales
-            $table->integer('duration_in_days');
+            $table->integer('price')->unsigned(); // sin decimales
+            $table->integer('duration_in_months');
+            $table->string('id_plan_paypal');
             $table->timestamps();
         });
     }
@@ -28,8 +29,3 @@ return new class extends Migration
         Schema::dropIfExists('plans');
     }
 };
-
-
-
-
-

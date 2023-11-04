@@ -142,7 +142,7 @@
 
             <div class="clearfix"></div>
 
-            <div id="terminos" class="collapse pb-4">
+            <div id="terminos" class="collapse pb-6">
 
                 <div class="card">
 
@@ -379,17 +379,66 @@
 
             </div>
 
-
-            <div class="form-group">
-                <div class="flex items-center justify-end">
-                    <button type="submit"
-                        class="px-4 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600
+            @if ($suscripcion == 0)
+                <div class="form-group">
+                    <div class="flex items-center justify-end">
+                        <button type="submit"
+                            class="px-4 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600
                         focus:outline-none focus:bg-indigo-600"
-                        data-toggle="modal" data-target="#SubsModal">
-                        {{ __('Suscribirse') }}
-                    </button>
+                            data-toggle="modal" data-target="#SubsModal">
+                            {{ __('Suscribirse') }}
+                        </button>
+                    </div>
+                </div>
+            @else
+                <div class="form-group">
+                    <div class="flex items-center justify-end">
+                        <button type="submit"
+                            class="px-4 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600
+                            focus:outline-none focus:bg-indigo-600"
+                            data-toggle="modal" data-target="#DesSubsModal">
+                            {{ __('Desuscribirse') }}
+                        </button>
+                    </div>
+                </div>
+            @endif
+
+
+
+
+
+            <div class="modal fade text-black" id="DesSubsModal" tabindex="-1" role="dialog"
+                aria-labelledby="confirmModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-black" id="confirmModalLabel">Confirmar Cancelación</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>¿Estás seguro de proceder con la desuscripción?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary text-black"
+                                data-dismiss="modal">Cancelar</button>
+
+                            <form action="{{ route('suscription.desuscribirse') }}" method="POST"
+                                class="flex items-center">
+                                @csrf
+                                <input type="hidden" name="correo" value="{{ $user->email }}">
+                                <input type="hidden" name="nombres" value="{{ $user->name }}">
+                                <button type="submit"
+                                    class="btn btn-success text-black"><strong>Desuscribirse</strong></button>
+                            </form>
+
+
+                        </div>
+                    </div>
                 </div>
             </div>
+
 
 
             <div class="modal fade text-black" id="SubsModal" tabindex="-1" role="dialog"
@@ -428,7 +477,8 @@
                                                     @csrf
                                                     <input type="hidden" name="codigoPlan"
                                                         value="{{ $plan['id'] }}">
-                                                    <input type="hidden" name="correo" value="{{ $user->email }}">
+                                                    <input type="hidden" name="correo"
+                                                        value="{{ $user->email }}">
                                                     <input type="hidden" name="nombres"
                                                         value="{{ $user->name }}">
                                                     <button type="submit"
@@ -445,7 +495,8 @@
                                                         </svg>
                                                     </span>{{ $plan['usage_type'] }}
                                                 </p>
-                                                <p class="text-xs text-gray-400 mt-3"> {{ $plan['description'] }}</p>
+                                                <p class="text-xs text-gray-400 mt-3"> {{ $plan['description'] }}
+                                                </p>
                                             </div>
                                         </div>
                                     @endif

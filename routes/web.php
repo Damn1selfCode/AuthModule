@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
 
 
 Route::post('/suscription/suscribirse', 'App\Http\Controllers\SubscriptionController@suscribirse')->name('suscription.suscribirse');
+Route::post('/suscription/desuscribirse', 'App\Http\Controllers\SubscriptionController@desuscribirse')->name('suscription.desuscribirse');
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/academia.php';
@@ -41,8 +42,9 @@ require __DIR__ . '/academia.php';
 Route::get('/usuarios', function () {
     $plans = app(WelcomeController::class)->planes();
     $user = auth()->user(); // Obtener el usuario autenticado
+    $suscripcion = ($user->suscripcion === null) ? 0 : $user->suscripcion->suscripcion;
     $user->code = hash('sha256', $user->email);
-    return view('usuarios', compact('user', 'plans'));
+    return view('usuarios', compact('user', 'plans', 'suscripcion'));
 })->middleware('verified')
     ->name('usuarios');
 

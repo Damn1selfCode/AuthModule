@@ -16,16 +16,16 @@ class PlanSeeder extends Seeder
     {
         // DB::table('plans')->truncate();
 
-        Plan::create([
-            'slug' => 'monthly',
-            'price' => 9.99,
-            'duration_in_month' => 1,
-        ]);
+        // Plan::create([
+        //     'slug' => 'monthly',
+        //     'price' => 9.99,
+        //     'duration_in_months' => 1,
+        // ]);
 
-        Plan::create([
-            'slug' => 'yearly',
-            'price' => 99.99,
-            'duration_in_month' => 12,
-        ]);
+        // Plan::create([
+        //     'slug' => 'yearly',
+        //     'price' => 99.99,
+        //     'duration_in_months' => 12,
+        // ]);
     }
 }
