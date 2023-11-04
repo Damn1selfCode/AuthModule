@@ -62,6 +62,19 @@ Route::get('/plan', function () {
 })->middleware(['verified'])
     ->name('plan');
 
+//material de promocion
+Route::get('/material', function () {
+    return view('promocion');
+});
+
+//soporte
+
+Route::get('/soporte', function () {
+    return view('soporte');
+});
+Route::get('/soporte', 'App\Http\Controllers\SoporteController@index');
+Route::post('/soporte', 'App\Http\Controllers\SoporteController@store')->name('soporte.store');
+
 
 // Auth::routes(['verify' => true]); ERROR MALDITO
 

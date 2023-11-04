@@ -339,9 +339,15 @@ return [
             'url'  => '/plan',
             'icon' => 'fas fa-fw fa-user',
         ],
+        //modificar-nuevo
+        [
+            'text' => 'Material de Promoción',
+            'url'  => '/material',
+            'icon' => 'fas fa-fw fa-user',
+        ],
         [
             'text' => 'Soporte',
-            'url'  => 'admin/settings',
+            'url'  => '/soporte',
             'icon' => 'fas fa-fw fa-user',
         ],
 
