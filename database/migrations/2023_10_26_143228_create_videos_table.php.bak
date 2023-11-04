@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('videos', function (Blueprint $table) {
-        
+
             $table->id('id_video');
             $table->unsignedBigInteger('id_cat');
             $table->text('titulo_video');
@@ -22,7 +22,6 @@ return new class extends Migration
             $table->integer('vista_gratuita');
             $table->timestamp('fecha_video')->useCurrent();
             $table->foreign('id_cat')->references('id_cat')->on('categorias');
-       
         });
     }
 

@@ -302,7 +302,7 @@ return [
 
         [
             'text' => 'profile',
-            'url'  => 'usuarios',
+            'url'  => '/usuarios',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
