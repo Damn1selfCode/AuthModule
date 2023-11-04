@@ -21,7 +21,6 @@ class SubscriptionController extends Controller
             'name' => $request->input('nombres'),
             'email' => $request->input('correo')
         ]);
-
         $data = $servicio->Suscribirse($request->input('codigoPlan'), $user);
         return redirect($data); //->back()->with('success', 'Usuario suscrito correctamente.Realice el pago para finalizar.');
     }

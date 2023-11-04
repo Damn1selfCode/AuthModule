@@ -23,7 +23,7 @@ class WelcomeController extends Controller
         return view('welcome', compact('planesPaypal'));
     }
 
-    private function planes()
+    public function planes()
     {
         $servicio  = new  PaypalService;
         $data = $servicio->ListarPlanes();

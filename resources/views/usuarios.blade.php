@@ -7,30 +7,30 @@
 @stop
 
 @section('content')
-  
-<div class="content-wrapper" style="min-height: 1058.31px;">
+
+    <div class="content-wrapper" style="min-height: 1058.31px;">
 
 
-  <!-- Main content -->
-  <section class="content">
+        <!-- Main content -->
+        <section class="content">
 
-    <div class="container-fluid">
+            <div class="container-fluid">
 
-      <div class="row">
-        
-        @include('profile.edit')
-        @include('profile.form')
-        @include('profile.content')
-      
+                <div class="row">
 
-     </div>
+                    @include('profile.edit')
+                    @include('profile.form')
+                    @include('profile.content')
+
+
+                </div>
+
+            </div>
+
+        </section>
+        <!-- /.content -->
 
     </div>
-
-  </section>
-  <!-- /.content -->
-
-</div>
 @stop
 
 
@@ -39,9 +39,8 @@
 @stop
 
 @section('js')
- <!-- /.content <script src="{{ asset('forrmjs/paises.json') }}"></script>-->
-
+    <script src="{{ asset('js/usuarios.js') }}"></script>
 @stop
 @section('scripts')
-  
+
 @endsection

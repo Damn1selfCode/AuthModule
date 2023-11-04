@@ -28,16 +28,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::delete('/profile/deactivate/{user}', 'App\Http\Controllers\ProfileController@deactivate')->name('profile.deactivate');
 });
 
+
+Route::post('/suscription/suscribirse', 'App\Http\Controllers\SubscriptionController@suscribirse')->name('suscription.suscribirse');
+
 require __DIR__ . '/auth.php';
+require __DIR__ . '/academia.php';
 
 
 Route::get('/usuarios', function () {
-    $user = auth()->user();
-    return view('usuarios', compact('user'));
-})
-    ->middleware('verified')
+    $plans = app(WelcomeController::class)->planes();
+    $user = auth()->user(); // Obtener el usuario autenticado
+    return view('usuarios', compact('user', 'plans'));
+})->middleware('verified')
     ->name('usuarios');
 
 Route::get('/home', [AcademyController::class, 'mostrarAcademia'])
