@@ -41,6 +41,7 @@ require __DIR__ . '/academia.php';
 Route::get('/usuarios', function () {
     $plans = app(WelcomeController::class)->planes();
     $user = auth()->user(); // Obtener el usuario autenticado
+    $user->code = hash('sha256', $user->email);
     return view('usuarios', compact('user', 'plans'));
 })->middleware('verified')
     ->name('usuarios');

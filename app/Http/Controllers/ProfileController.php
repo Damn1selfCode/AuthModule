@@ -46,7 +46,7 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function updateBK(ProfileUpdateRequest $request): RedirectResponse
     {
         $request->user()->fill($request->validated());
 
@@ -58,7 +58,8 @@ class ProfileController extends Controller
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
-public function updateBK(ProfileRequest $request)
+
+    public function update(ProfileRequest $request)
     {
         return DB::transaction(function () use ($request) {
             $user = $request->user();

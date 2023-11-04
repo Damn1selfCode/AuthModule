@@ -33,7 +33,6 @@
                 </div>
 
             </div>
-
             <div class="form-group">
 
                 <label for="inputEmail" class="control-label">Correo electrónico</label>
@@ -45,19 +44,18 @@
                 </div>
 
             </div>
-
             <div class="form-group">
 
-                <label for="inputPatrocinador" class="control-label">Patrocinador</label>
+                <label for="idPatrocinador" class="control-label">Patrocinador</label>
 
                 <div>
 
-                    <input type="text" class="form-control" id="inputPatrocinador" value="academy-Learn-Stream"
-                        readonly>
+                    <input type="text" class="form-control" id="idPatrocinador" value="LearnStream-Academy" readonly>
 
                 </div>
 
             </div>
+
 
             <div class="form-group">
 
@@ -69,47 +67,49 @@
                     <div class="input-group-prepend">
                         <span class="p-2 bg-info rounded-left">http://LearnStream.com/</span>
                     </div>
-                    <input type="text" class="form-control" id="inputAfiliado" value="academy-Learn-Stream" readonly>
+                    <input type="text" class="form-control" id="inputAfiliado" value="{{ $user->code }}" readonly>
                 </div>
 
             </div>
 
             <div class="form-group">
-                <label for="inputPais" class="control-label">País</label>
-                <input type="text" class="form-control" id="inputPais" data-mask>
-            </div>
 
+                <label for="inputMovil" class="control-label">Numero de Contacto</label>
 
-            <div class="form-group">
-
-                <label for="inputMovil" class="control-label">Teléfono Móvil</label>
 
                 <div class="input-group">
-
                     <div class="input-group-prepend">
-                        <span class="p-2 bg-info rounded-left dialCode"></span>
+                        <select id="countrySelect">
+                            <option value="">Seleccione un país</option>
+                            @foreach (config\PaisesList::obtenerPaises() as $isoCode => $countryName)
+                                <option value="{{ $isoCode }}">{{ $countryName }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <input type="text" class="form-control" id="inputMovil" data-inputmask="'mask':'(999) 999-9999'"
                         data-mask>
-
                 </div>
 
             </div>
 
+
+
+
+
+
+
+
+
+
             <div class="form-group">
-
                 <label for="tipoRed">Tipo de Red:</label>
-
-                <select class="form-control" id="tipoRed">
-
-                    <option value="">Seleccione tipo de red</option>
-                    <option value="uninivel">Red UniNivel</option>
+                <select class="form-control" id="tipoRed" disabled>
+                    <option value="uninivel" selected>Red UniNivel</option>
                     <option value="binaria">Red Binaria</option>
-
                 </select>
-
             </div>
+
 
             <div class="form-group pb-4">
 
@@ -125,7 +125,8 @@
                         </label>
 
                         <a href="#terminos" data-toggle="collapse"><span
-                                class="float-left float-xl-right text-info"><b>Ver y firmar términos y
+                                class="float-left float-xl-right text-info"><b>Ver
+                                    y firmar términos y
                                     condiciones</b></span>
                         </a>
 
@@ -428,7 +429,8 @@
                                                     <input type="hidden" name="codigoPlan"
                                                         value="{{ $plan['id'] }}">
                                                     <input type="hidden" name="correo" value="{{ $user->email }}">
-                                                    <input type="hidden" name="nombres" value="{{ $user->name }}">
+                                                    <input type="hidden" name="nombres"
+                                                        value="{{ $user->name }}">
                                                     <button type="submit"
                                                         class="btn btn-success text-black"><strong>Suscribirse</strong></button>
                                                 </form>
