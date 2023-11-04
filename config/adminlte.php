@@ -306,11 +306,6 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'usuarios',
-            'url'  => '',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
             'text' => 'Academia',
             'icon' => 'fas fa-fw fa-share',
             'submenu' => [],

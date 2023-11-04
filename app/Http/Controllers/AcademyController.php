@@ -24,7 +24,7 @@ class AcademyController extends Controller
         // Obten la suscripción del usuario actual
        
         $user = Auth::user();
-        $suscripcion = ($user->suscripcion === null) ? 0 : $user->suscripcion->suscripcion;// Asume que el nombre del atributo en la tabla "suscripcion" es "suscripcion"
+        $suscripcion = ($user->suscripcion === null) ? 0 : $user->suscripcion->suscripcion;
 
         return view('academy', compact('categorias', 'suscripcion'));
     }

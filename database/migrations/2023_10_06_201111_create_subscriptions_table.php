@@ -15,9 +15,9 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->timestamp('active_until');
             $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('big_user_id')->unsigned()->nullable();
             $table->bigInteger('plan_id')->unsigned();
             $table->timestamps();
-
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('plan_id')->references('id')->on('plans');
         });
