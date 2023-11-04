@@ -306,7 +306,7 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => '/usuarios',
+            'text' => 'usuarios',
             'url'  => '',
             'icon' => 'fas fa-fw fa-lock',
         ],
