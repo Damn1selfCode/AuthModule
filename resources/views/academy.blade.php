@@ -32,10 +32,13 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('academy_css/style.css') }}">
+<!-- Agrega el enlace CDN a Video.js en tu vista Blade -->
+<link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet">
 @stop
 
 @section('js')
-
+<!-- Agrega el enlace CDN a Video.js en tu vista Blade -->
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 @stop
 @section('scripts')
 

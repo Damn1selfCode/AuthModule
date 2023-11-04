@@ -75,6 +75,18 @@ Deslizador de videos
 	opacity:.5;
 }
 
+.visorVideos {
+    position: relative;
+}
+
+.video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 /*=============================================
 Formulario suscripción
 =============================================*/
@@ -111,16 +123,51 @@ input[type="checkbox"]:checked + label[for="aceptarTerminos"] span{
 /*=============================================
 Videos
 =============================================*/
+#videoTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#videoTitleText {
+    flex: 60%;
+}
+
+.speed-dropdown {
+    flex: 40%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.speed-controls {
+    display: flex;
+}
+
+.speed-controls button {
+    width: 3.2em;
+	margin-right: 0.5em;
+    height: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hide {
+    display: none;
+}
+
+.video-list-item.active {
+    background-color: rgba(192, 192, 192, 0.5); /* Gris con poca opacidad */
+}
+
 
 .videos .visorVideos{
 	position:relative;
 	width:75%;
 	background:black;
 }
-
+/*quitar*/
 .videos .visorVideos video{
-	width:100%;
-	height:100vh;
+	
 }
 
 .videos .visorVideos h5{
@@ -196,40 +243,17 @@ Videos
 /*=============================================
 Grid Material de promoción
 =============================================*/
-
 .grid {
-	position: relative;
-	max-width: 100%;
-	width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px)); /* Columnas flexibles con un mínimo de 300px */
+    grid-gap: 20px; /* Espacio entre elementos */
+	margin: auto;
 }
 
-.grid img {
-	width: 100%;
-	max-width: 100%;
-	height: auto;
-}
-
-.grid .white-panel {
-	position: absolute;
-	background: white;
-	padding: 10px;
-}
-
-.grid .white-panel h1 {
-	font-size: 1em;
-}
-
-.grid .white-panel h1 a {
-	color: #A92733;
-}
-
-.grid .white-panel:hover {
-	box-shadow: 1px 1px 10px rgba(0,0,0,0.5);
-	margin-top: -5px;
-	-webkit-transition: all 0.3s ease-in-out;
-	-moz-transition: all 0.3s ease-in-out;
-	-o-transition: all 0.3s ease-in-out;
-	transition: all 0.3s ease-in-out;
+/* Ajusta el número de columnas a 3 */
+.white-panel{
+	width: 420px;
+	margin-bottom: 30px;
 }
 
 /*=============================================

@@ -22,9 +22,9 @@ class AcademyController extends Controller
         $categorias = [$categoriaEspecifica];
 
         // Obten la suscripción del usuario actual
+       
         $user = Auth::user();
-
-        $suscripcion = ($user->suscripcion === null) ? 0 : $user->suscripcion->suscripcion; // Validar en caso sea nuevo usario, Asume que el nombre del atributo en la tabla "suscripcion" es "suscripcion"
+        $suscripcion = ($user->suscripcion === null) ? 0 : $user->suscripcion->suscripcion;// Asume que el nombre del atributo en la tabla "suscripcion" es "suscripcion"
 
         return view('academy', compact('categorias', 'suscripcion'));
     }
@@ -35,13 +35,12 @@ class AcademyController extends Controller
         $categorias = Academy::with('videos')->get();
 
         // Obten la suscripción del usuario actual
-
         $user = Auth::user();
-        $suscripcion = ($user->suscripcion === null) ? 0 : $user->suscripcion->suscripcion; // Validar en caso sea nuevo usario, Asume que el nombre del atributo en la tabla "suscripcion" es "suscripcion"
+        $suscripcion = ($user->suscripcion === null) ? 0 : $user->suscripcion->suscripcion;
+        // Asume que el nombre del atributo en la tabla "suscripcion" es "suscripcion"
 
         return view('home', compact('categorias', 'suscripcion'));
     }
-
     /*public function mostrarCategorias($ruta_categoria)
     {
         $categoriaModel = new Academy();
