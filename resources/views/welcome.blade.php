@@ -44,7 +44,7 @@
 
                 @auth
                     <a class="inline-flex items-center bg-indigo-500 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0 text-white"
-                        href="{{ url('/dashboard') }}">
+                        href="{{ url('/home') }}">
                         BackOffice
                         <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                             stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
@@ -130,7 +130,7 @@
     <section id="team" class="text-gray-400 bg-gray-900 body-font">
         <div class="container px-5 py-24 mx-auto">
             <div class="flex flex-col text-center w-full mb-20">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Nuestra Team</h1>
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Nuestro Team</h1>
                 <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Forma parte de nuestra maravillosa familia del
                     conocimiento y emprendimiento.</p>
             </div>
