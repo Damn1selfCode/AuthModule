@@ -1,9 +1,0 @@
-[
-    {"nombre": "Argentina", "codigo": "AR"},
-    {"nombre": "Brasil", "codigo": "BR"},
-    {"nombre": "Chile", "codigo": "CL"},
-    {"nombre": "Colombia", "codigo": "CO"},
-    {"nombre": "México", "codigo": "MX"},
-    {"nombre": "Perú", "codigo": "PE"},
-    {"nombre": "España", "codigo": "ES"}
-]

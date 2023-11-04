@@ -53,9 +53,3 @@ Route::get('/plan', function () {
     return view('plan');
 })->middleware(['verified'])
     ->name('plan');
-
-
-// Auth::routes(['verify' => true]); ERROR MALDITO
-
-// Route::resource('/crud', [CrudController::class]);
-// Route::get('/xxx', [XController::class]); //solo si tienes un metodo para no especificar
