@@ -16,6 +16,7 @@ return new class extends Migration
             $table->text('mensaje');
             $table->text('adjuntos')->nullable();
             $table->text('tipo');
+            $table->json('papelera')->nullable(); // Nuevo campo para manejar la papelera
             $table->timestamp('fecha_soporte');
             $table->timestamps();
         });

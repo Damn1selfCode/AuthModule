@@ -2,73 +2,73 @@
 PLUGIN CKEDITOR
 =============================================*/
 ClassicEditor
-.create(document.querySelector("#editor"), {
+	.create(document.querySelector("#editor"), {
 
-	toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|', 'undo', 'redo']
+		toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|', 'undo', 'redo']
 
-})
-.then(function(editor){
+	})
+	.then(function (editor) {
 
-	$(".ck-content").css({"height":"200px"})
+		$(".ck-content").css({ "height": "200px" })
 
-})
-.catch(function(error){
-	
-	// console.log("error", error);
+	})
+	.catch(function (error) {
 
-})
+		// console.log("error", error);
+
+	})
 
 /*=============================================
 SUBIENDO ARCHIVOS ADJUNTOS
 =============================================*/
 
-$(".subirAdjuntos").change(function(){
+$(".subirAdjuntos").change(function () {
 
 	var archivos = this.files;
 
-	for(var i = 0; i < archivos.length; i++){
+	for (var i = 0; i < archivos.length; i++) {
 
 		/*=============================================
 		Validar formatos de archivos
-		=============================================*/	
+		=============================================*/
 
-		if( archivos[i]["type"] != "image/jpeg" && 
+		if (archivos[i]["type"] != "image/jpeg" &&
 			archivos[i]["type"] != "image/png" &&
-			archivos[i]["type"] != "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" && 
+			archivos[i]["type"] != "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" &&
 			archivos[i]["type"] != "application/vnd.ms-excel" &&
 			archivos[i]["type"] != "application/vnd.openxmlformats-officedocument.wordprocessingml.document" &&
 			archivos[i]["type"] != "application/msword" &&
-			archivos[i]["type"] != "application/pdf"){
+			archivos[i]["type"] != "application/pdf") {
 
 			$(".subirAdjuntos").val("");
 
 			swal({
-	          title: "Error al subir los Archivos",
-	          text: "¡El formato de los archivos no es correcto, debe ser: JPG, PNG, EXCEL, WORD o PDF!",
-	          type: "error",
-	          confirmButtonText: "¡Cerrar!"
-	        });
+				title: "Error al subir los Archivos",
+				text: "¡El formato de los archivos no es correcto, debe ser: JPG, PNG, EXCEL, WORD o PDF!",
+				type: "error",
+				confirmButtonText: "¡Cerrar!"
+			});
 
-	        return;
+			return;
 
-		}else if(archivos[i]["size"] > 32000000){
+		} else if (archivos[i]["size"] > 32000000) {
 
 			/*=============================================
 			Validar el tamaño de los archivos
-			=============================================*/	
+			=============================================*/
 
 			$(".subirAdjuntos").val("");
 
 			swal({
-	          title: "Error al subir los Archivos",
-	          text: "¡Los Archivos no deben pesar más de 32MB!",
-	          type: "error",
-	          confirmButtonText: "¡Cerrar!"
-	        });
+				title: "Error al subir los Archivos",
+				text: "¡Los Archivos no deben pesar más de 32MB!",
+				type: "error",
+				confirmButtonText: "¡Cerrar!"
+			});
 
-	        return;
+			return;
 
-		}else{
+		} else {
 
 			multiplesArchivos(archivos[i]);
 
@@ -80,27 +80,27 @@ $(".subirAdjuntos").change(function(){
 
 var archivosTemporales = [];
 
-function multiplesArchivos(archivo){
+function multiplesArchivos(archivo) {
 
 	datosArchivo = new FileReader;
 	datosArchivo.readAsDataURL(archivo);
 
-	$(datosArchivo).on("load", function(event){
+	$(datosArchivo).on("load", function (event) {
 
-		var rutaArchivo = event.target.result;   			
-		
+		var rutaArchivo = event.target.result;
 
-		if(archivo["type"] == "image/jpeg" || archivo["type"] == "image/png"){
+
+		if (archivo["type"] == "image/jpeg" || archivo["type"] == "image/png") {
 
 			$(".mailbox-attachments").append(`
 	
 			<li>
-              <span class="mailbox-attachment-icon has-img"><img src="`+rutaArchivo+`" alt="Attachment"></span><br>
+              <span class="mailbox-attachment-icon has-img"><img src="`+ rutaArchivo + `" alt="Attachment"></span><br>
 
               <div class="mailbox-attachment-info">
-                <a href="#" class="mailbox-attachment-name"><i class="fas fa-camera"></i> `+archivo['name']+`</a>
+                <a href="#" class="mailbox-attachment-name"><i class="fas fa-camera"></i> `+ archivo['name'] + `</a>
                     <span class="mailbox-attachment-size clearfix mt-1">
-                      <span>`+archivo['size']+` Bytes</span>
+                      <span>`+ archivo['size'] + ` Bytes</span>
                       <button type="button" class="btn btn-default btn-sm float-right quitarAdjunto" temporal><i class="fas fa-times"></i></button>
                     </span>
               </div>
@@ -109,17 +109,17 @@ function multiplesArchivos(archivo){
 			`)
 		}
 
-		if(archivo["type"] == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" || archivo["type"] == "application/vnd.ms-excel"){
+		if (archivo["type"] == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" || archivo["type"] == "application/vnd.ms-excel") {
 
-		 	$(".mailbox-attachments").append(`
+			$(".mailbox-attachments").append(`
 
 		 	 <li>
                   <span class="mailbox-attachment-icon"><i class="far fa-file-excel"></i></span>
 
                   <div class="mailbox-attachment-info">
-                    <a href="#" class="mailbox-attachment-name"><i class="fas fa-paperclip"></i>`+archivo['name']+`</a>
+                    <a href="#" class="mailbox-attachment-name"><i class="fas fa-paperclip"></i>`+ archivo['name'] + `</a>
                         <span class="mailbox-attachment-size clearfix mt-1">
-                          <span>`+archivo['size']+` Bytes</span>
+                          <span>`+ archivo['size'] + ` Bytes</span>
                           <button type="button" class="btn btn-default btn-sm float-right quitarAdjunto" temporal><i class="fas fa-times"></i></a>
                         </span>
                   </div>
@@ -129,17 +129,17 @@ function multiplesArchivos(archivo){
 
 		}
 
-		if(archivo["type"] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document" || archivo["type"] == "application/msword"){
+		if (archivo["type"] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document" || archivo["type"] == "application/msword") {
 
-		 	$(".mailbox-attachments").append(`
+			$(".mailbox-attachments").append(`
 
 		 	 <li>
                   <span class="mailbox-attachment-icon"><i class="far fa-file-word"></i></span>
 
                   <div class="mailbox-attachment-info">
-                    <a href="#" class="mailbox-attachment-name"><i class="fas fa-paperclip"></i>`+archivo['name']+`</a>
+                    <a href="#" class="mailbox-attachment-name"><i class="fas fa-paperclip"></i>`+ archivo['name'] + `</a>
                         <span class="mailbox-attachment-size clearfix mt-1">
-                          <span>`+archivo['size']+` Bytes</span>
+                          <span>`+ archivo['size'] + ` Bytes</span>
                           <button type="button" class="btn btn-default btn-sm float-right quitarAdjunto" temporal><i class="fas fa-times"></i></a>
                         </span>
                   </div>
@@ -150,17 +150,17 @@ function multiplesArchivos(archivo){
 		}
 
 
-		if(archivo["type"] == "application/pdf"){
+		if (archivo["type"] == "application/pdf") {
 
-		 	$(".mailbox-attachments").append(`
+			$(".mailbox-attachments").append(`
 
 		 	 <li>
                   <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
 
                   <div class="mailbox-attachment-info">
-                    <a href="#" class="mailbox-attachment-name"><i class="fas fa-paperclip"></i>`+archivo['name']+`</a>
+                    <a href="#" class="mailbox-attachment-name"><i class="fas fa-paperclip"></i>`+ archivo['name'] + `</a>
                         <span class="mailbox-attachment-size clearfix mt-1">
-                          <span>`+archivo['size']+` Bytes</span>
+                          <span>`+ archivo['size'] + ` Bytes</span>
                           <button type="button" class="btn btn-default btn-sm float-right quitarAdjunto" temporal><i class="fas fa-times"></i></a>
                         </span>
                   </div>
@@ -170,14 +170,14 @@ function multiplesArchivos(archivo){
 
 		}
 
-		if(archivosTemporales.length != 0){
+		if (archivosTemporales.length != 0) {
 
 			archivosTemporales = JSON.parse($(".archivosTemporales").val());
 
 		}
 
 		archivosTemporales.push(rutaArchivo)
-		
+
 
 		$(".archivosTemporales").val(JSON.stringify(archivosTemporales));
 
@@ -190,20 +190,20 @@ function multiplesArchivos(archivo){
 Quitar archivo adjunto
 =============================================*/
 
-$(document).on("click", ".quitarAdjunto", function(){
-	
+$(document).on("click", ".quitarAdjunto", function () {
+
 	var listaTemporales = JSON.parse($(".archivosTemporales").val());
 
 	var quitarAdjunto = $(".quitarAdjunto");
 
-	for(var i = 0; i < listaTemporales.length; i++){
+	for (var i = 0; i < listaTemporales.length; i++) {
 
 		$(quitarAdjunto[i]).attr("temporal", listaTemporales[i]);
 
 		var quitarArchivo = $(this).attr("temporal");
 
-		if(quitarArchivo == listaTemporales[i]){
-			
+		if (quitarArchivo == listaTemporales[i]) {
+
 			listaTemporales.splice(i, 1);
 
 			$(".archivosTemporales").val(JSON.stringify(listaTemporales));
@@ -217,4 +217,61 @@ $(document).on("click", ".quitarAdjunto", function(){
 
 })
 
+
+/*=============================================
+vistas
+=============================================*/
+
+
+$(document).ready(function () {
+	// Manejar clic en enlaces de la sección de botones
+	$('.nav-link').on('click', function (e) {
+		e.preventDefault();
+
+		// Obtener el identificador de la sección
+		var section = $(this).data('section');
+
+		// Cargar dinámicamente el contenido de la vista correspondiente
+		$.get("/soporte/" + section, function (data) {
+			$('.col-md-9').html(data);
+		});
+	});
+});
+
+$(document).ready(function () {
+	// Manejar clic en el asunto del ticket
+	$('body').on('click', '.ver-ticket', function (e) {
+		e.preventDefault();
+
+		// Obtener el ID del ticket desde el atributo data-id
+		var ticketId = $(this).closest('tr').find('.checkboxSeleccionar').val();
+		console.log('Clic en el asunto del ticket. ID:', ticketId);
+
+		// Obtener el origen de la vista
+		var origen = $(this).data('origen');
+
+		// Cargar dinámicamente el contenido de la vista lectura-ticket con el origen
+		$.get("/soporte/lectura-ticket/" + ticketId, { origen: origen }, function (data) {
+			$('.col-md-9').html(data);
+		});
+	});
+
+	// Manejar clic en el checkbox para seleccionar
+	$('tbody').on('click', '.checkboxSeleccionar', function () {
+		// Aquí puedes agregar lógica adicional si es necesario
+		console.log('Clic en el checkbox de selección.');
+	});
+});
+
+
+
+/*=============================================
+DATATABLE TICKETS
+=============================================*/
+
+
+
+/*=============================================
+ENVIAR A LA PAPELERA
+=============================================*/
 

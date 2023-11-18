@@ -87,38 +87,7 @@ Deslizador de videos
     height: 100%;
 }
 
-/*=============================================
-Formulario suscripción
-=============================================*/
-input[type="checkbox"]{
-	display:none;
-}
 
-label[for="aceptarTerminos"] span{
-	display:inline-block;
-	width:20px;
-	height:20px;
-	background:#E9ECEF;
-	vertical-align:middle;
-	border-radius:100%;
-	margin-right: 5px;
-	border:1px solid #aaa;
-	cursor:pointer;
-}
-
-input[type="checkbox"]:checked + label[for="aceptarTerminos"] span{
-	background:url(../img/plantilla/check.png);
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
-	border:1px solid #fff;
-
-}
-
-#signatureparent{
-	width:300px; 
-	border-bottom:2px solid #333;
-}
 
 /*=============================================
 Videos
@@ -164,10 +133,6 @@ Videos
 	position:relative;
 	width:75%;
 	background:black;
-}
-/*quitar*/
-.videos .visorVideos video{
-	
 }
 
 .videos .visorVideos h5{

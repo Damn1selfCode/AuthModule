@@ -3,6 +3,7 @@
 use App\Http\Controllers\AcademyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\SoporteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -76,14 +77,18 @@ Route::get('/material', function () {
 
 //soporte
 
-Route::get('/soporte', function () {
-    return view('soporte');
-});
-Route::get('/soporte', 'App\Http\Controllers\SoporteController@index');
+// Ruta para mostrar el formulario de soporte
+//Route::get('/soporte', 'App\Http\Controllers\SoporteController@showSoporteForm')->name('soporte');
+Route::get('/soporte', 'App\Http\Controllers\SoporteController@showSoporteForm')->name('soporte');
+
+// Ruta para procesar el formulario de soporte
 Route::post('/soporte', 'App\Http\Controllers\SoporteController@store')->name('soporte.store');
+Route::get('/soporte/recibidos', [SoporteController::class, 'recibidos'])->name('soporte.recibidos');
+Route::get('/soporte/enviados', [SoporteController::class, 'enviados'])->name('soporte.enviados');
+Route::get('/soporte/papelera', [SoporteController::class, 'papelera'])->name('soporte.papelera');
+//NUEVO
+Route::get('/soporte/lectura-ticket/{id}/{origen?}', 'App\Http\Controllers\SoporteController@lecturaTicket')->name('soporte.lectura-ticket');
+Route::post('/soporte/lectura-ticket/{id}', 'App\Http\Controllers\SoporteController@lecturaTicket');
+Route::post('/soporte/enviar-a-papelera', 'App\Http\Controllers\SoporteController@enviarAPapelera')->name('soporte.enviar-a-papelera');
+Route::post('/soporte/recuperar-de-papelera', 'App\Http\Controllers\SoporteController@recuperarDePapelera')->name('soporte.recuperar-de-papelera');
 
-
-// Auth::routes(['verify' => true]); ERROR MALDITO
-
-// Route::resource('/crud', [CrudController::class]);
-// Route::get('/xxx', [XController::class]); //solo si tienes un metodo para no especificar
