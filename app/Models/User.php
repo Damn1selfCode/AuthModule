@@ -68,14 +68,20 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(Subscription::class, 'user_id', 'id');
     }
-    //usuario predeterminado suscripcion
-    public function suscrip()
+
+    //codigo referido
+    public function CodRef()
     {
-        return $this->hasOne(Subscription::class);
+        return $this->hasOne(CodigoReferido::class, 'user_id', 'id');
     }
 
-    public function hasActiveSusbcription()
-    {
-        return optional($this->susbcription)->isActive() ?? false;
-    }
+    // public function suscrip()
+    // {
+    //     return $this->hasOne(Subscription::class);
+    // }
+
+    // public function hasActiveSusbcription()
+    // {
+    //     return optional($this->susbcription)->isActive() ?? false;
+    // }
 }

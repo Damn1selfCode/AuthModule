@@ -80,17 +80,18 @@
                 </div>
             @endif
 
-<div class="flex items-center justify-end">
-    <button type="submit" 
-        class="px-4 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600"
-        style="margin-right: 10px;">
-        {{ __('Guardar') }}
-    </button>
+            <div class="flex items-center justify-end">
+                <button type="submit"
+                    class="px-4 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600"
+                    style="margin-right: 10px;">
+                    {{ __('Guardar') }}
+                </button>
 
-    <button type="button" class="btn btn-danger text-black" data-toggle="modal" data-target="#confirmModal">
-        Desactivar Usuario
-    </button>
-</div>
+                <button type="button" class="btn btn-danger text-black" data-toggle="modal"
+                    data-target="#confirmModal">
+                    Desactivar Usuario
+                </button>
+            </div>
         </form>
 
 
