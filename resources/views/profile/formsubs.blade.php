@@ -24,15 +24,16 @@
 
             <div class="form-group">
 
-                <label for="inputName" class="control-label">Nombre completo</label>
+                <label for="idPatrocinador" class="control-label">Patrocinador</label>
 
                 <div>
 
-                    <input type="text" class="form-control" id="inputName" value="administrador" readonly>
+                    <input type="text" class="form-control" id="idPatrocinador" value="LearnStream-Academy" readonly>
 
                 </div>
 
             </div>
+
             <div class="form-group">
 
                 <label for="inputEmail" class="control-label">Correo electrónico</label>
@@ -44,34 +45,24 @@
                 </div>
 
             </div>
-            <div class="form-group">
 
-                <label for="idPatrocinador" class="control-label">Patrocinador</label>
-
-                <div>
-
-                    <input type="text" class="form-control" id="idPatrocinador" value="LearnStream-Academy" readonly>
-
-                </div>
-
-            </div>
 
 
             <div class="form-group">
 
-                <label for="inputAfiliado" class="control-label">Enlace de afiliado</label>
-                <span>(Compartiendo este enlace podrá ganar comisiones, más información: <a
-                        href="plan-compensacion">Plan de compensanción</a>)</span>
+                <label for="inputAfiliado" class="control-label">Enlace de afiliado Asociado</label>
+                <span>(: <a href="plan">Plan de compensanción</a>)</span>
 
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="p-2 bg-info rounded-left">http://LearnStream.com/</span>
                     </div>
-                    <input type="text" class="form-control" id="inputAfiliado" value="{{ $user->code }}" readonly>
+                    <input type="text" class="form-control" id="inputAfiliado" value="" readonly>
                 </div>
 
             </div>
 
+            {{--
             <div class="form-group">
 
                 <label for="inputMovil" class="control-label">Numero de Contacto</label>
@@ -91,14 +82,7 @@
                         data-mask>
                 </div>
 
-            </div>
-
-
-
-
-
-
-
+            </div> --}}
 
 
 
@@ -137,8 +121,8 @@
             </div>
 
             <!--=====================================
-   CONTRATO
-   ======================================-->
+            INICIO CONTRATO
+            ======================================-->
 
             <div class="clearfix"></div>
 
@@ -379,6 +363,11 @@
 
             </div>
 
+            <!--=====================================
+            FIN CONTRATO
+            ======================================-->
+
+
             @if ($suscripcion == 0)
                 <div class="form-group">
                     <div class="flex items-center justify-end">
@@ -405,7 +394,9 @@
 
 
 
-
+            <!--=====================================
+                        desuscripción
+            ======================================-->
 
             <div class="modal fade text-black" id="DesSubsModal" tabindex="-1" role="dialog"
                 aria-labelledby="confirmModalLabel" aria-hidden="true">
@@ -440,6 +431,9 @@
             </div>
 
 
+            <!--=====================================
+                         suscripción
+            ======================================-->
 
             <div class="modal fade text-black" id="SubsModal" tabindex="-1" role="dialog"
                 aria-labelledby="SubsModalLabel" aria-hidden="true">
@@ -456,7 +450,11 @@
 
 
                         <div class="modal-body" class="modal-content bg-primary">
-                            <div class="flex flex-wrap justify-center">
+
+                            <div class="flex
+                                        flex-wrap justify-center">
+
+
 
 
                                 @foreach ($plans as $plan)
@@ -472,8 +470,28 @@
                                                     {{ $plan['name'] }}
                                                 </h1>
 
+
+
+
                                                 <form action="{{ route('suscription.suscribirse') }}" method="POST"
-                                                    class="flex items-center">
+                                                    class="flex items-center" id="suscripcionForm">
+
+                                                    {{-- <p class="flex items-center text-gray-400 mb-2">
+                                                        <label for="inputEmail" class="control-label">Codigo de
+                                                            Refererido:</label>
+                                                    </p>
+                                                    <p class="flex items-center text-gray-400 mb-2">
+                                                        <span class="p-2 bg-info rounded-left">
+                                                            http://LearnStream.com/
+                                                        </span>
+                                                    </p> --}}
+
+                                                    <p class="flex items-center text-gray-400 mb-2">
+                                                        <input type="text" class="form-control"
+                                                            name="codigoReferido" value=""
+                                                            placeholder="Codigo">
+                                                    </p>
+
                                                     @csrf
                                                     <input type="hidden" name="codigoPlan"
                                                         value="{{ $plan['id'] }}">
@@ -505,6 +523,9 @@
                             </div>
 
                         </div>
+
+
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary text-black"
                                 data-dismiss="modal">Cancelar</button>
@@ -516,6 +537,11 @@
 
 
         </div>
+        <script>
+            function actualizarCodigo() {
+                document.getElementById('updateCodeForm').submit();
+            }
+        </script>
 
     </div>
 

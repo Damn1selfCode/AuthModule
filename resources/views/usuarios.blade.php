@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Perfil de Usuario</h1>
+
 @stop
 
 @section('content')
@@ -37,7 +37,7 @@
                 <div class="row">
 
                     @include('profile.edit')
-                    @include('profile.form')
+                    @include('profile.formsubs')
                     @include('profile.codigo_referido')
                 </div>
 

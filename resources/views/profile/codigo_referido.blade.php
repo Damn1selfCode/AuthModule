@@ -13,8 +13,7 @@
 
 @endphp
 
-
-<div class=" col-12 col-md-12 ">
+<div class=" col-12 col-md-12 "style="padding-top: 20px;">
     <div class="bg-white p-6 rounded-lg shadow-md w-full">
 
 
@@ -23,7 +22,7 @@
 
             <h5 class="m-0 text-uppercase text-secondary">
 
-                <strong>Codigo de Referido</strong>
+                <strong>Mi Codigo de Referido</strong>
 
             </h5>
 
@@ -39,8 +38,7 @@
                         <span class="p-2 bg-info rounded-left">
                             http://LearnStream.com/
                         </span>
-                        <input type="text" class="form-control" name="codigorefpriv"
-                            value="{{ $codRef === null ? $codigopriv : $codRef->codigoprivado }}"
+                        <input type="text" class="form-control" name="codigorefpriv" value="{{ $codigopriv }}"
                             style="width: 150px !important;" readonly>
 
                     </div>

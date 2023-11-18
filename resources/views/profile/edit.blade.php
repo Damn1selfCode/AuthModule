@@ -1,6 +1,17 @@
 @vite('resources/css/app.css')
 <div class=" col-12 col-md-4 ">
     <div class="bg-white p-6 rounded-lg shadow-md w-full">
+
+        <div class="card-header">
+
+            <h5 class="m-0 text-uppercase text-secondary">
+
+                <strong>PERFIL USUARIO</strong>
+
+            </h5>
+
+        </div>
+
         <div class="text-center">
             <img class="rounded-circle" width="150" height="150" src="{{ asset(Auth::user()->profile_image) }}"
                 style="display: block; margin: 0 auto;">

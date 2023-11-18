@@ -48,7 +48,7 @@ Route::get('/usuarios', function () {
     $user = auth()->user(); // Obtener el usuario autenticado
     $suscripcion = ($user->suscripcion === null) ? 0 : $user->suscripcion->suscripcion;
     $codRef = ($user->CodRef === null) ? null : $user->CodRef;
-    $user->code = hash('sha256', $user->email);
+    $user->code = 'sadasd';
     //DD($user);
     return view('usuarios', compact('user', 'plans', 'suscripcion', 'codRef'));
 })->middleware('verified')
