@@ -11,9 +11,10 @@ return new class extends Migration
         Schema::create('codigo_referido', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id'); // Campo de referencia al ID de la tabla users
-            $table->string('codigopublico')->unique();
-            $table->string('codigoprivado')->unique();
+            $table->string('codigopublico');
+            $table->string('codigoprivado');
             $table->timestamps();
+            $table->unique(['codigopublico', 'codigoprivado']);
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

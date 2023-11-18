@@ -11,6 +11,7 @@ use App\Models\Ticket;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\File;
+use Carbon\Carbon;
 
 class SoporteController extends Controller
 
@@ -208,20 +209,19 @@ class SoporteController extends Controller
     {
         // Obtener los IDs de los tickets a recuperar de la papelera
         $idsSeleccionados = $request->input('ids', []);
-    
+
         // Lógica para recuperar los tickets de la papelera
         foreach ($idsSeleccionados as $id) {
             $ticket = Soporte::find($id);
-    
+
             // Obtener el array actual y quitar el ID del usuario autenticado
             $papelera = json_decode($ticket->papelera, true) ?: [];
             $papelera = array_diff($papelera, [auth()->id()]);
-    
+
             // Actualizar el campo 'papelera' solo si hay elementos en el array
             $ticket->update(['tipo' => 'enviado', 'papelera' => $papelera ? json_encode($papelera) : null]);
         }
-    
+
         return response()->json(['success' => true, 'message' => 'Tickets recuperados de la papelera correctamente.']);
     }
-    
 }

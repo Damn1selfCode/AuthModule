@@ -1,5 +1,20 @@
 @vite('resources/css/app.css')
-<div class=" col-12 col-md-4 ">
+@php
+    $action = $codRef == null ? route('codigo.generar') : route('codigo.actualizar');
+    $botonDescripcion = $codRef == null ? 'Generar' : 'Actualizar';
+    $codigopriv = strtoupper(
+        implode(
+            '',
+            array_map(function ($word) {
+                return $word[0];
+            }, explode(' ', $user->name)),
+        ),
+    );
+
+@endphp
+
+
+<div class=" col-12 col-md-12 ">
     <div class="bg-white p-6 rounded-lg shadow-md w-full">
 
 
@@ -16,41 +31,35 @@
 
         <div class="card-body">
 
-            <form method="post" action="">
+            <form method="POST" class="flex items-center" method="POST" action="{{ $action }}">
+                @csrf
+                <input type="hidden" name="user" value="{{ $user }}">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="p-2 bg-info rounded-left">
+                            http://LearnStream.com/
+                        </span>
+                        <input type="text" class="form-control" name="codigorefpriv"
+                            value="{{ $codRef === null ? $codigopriv : $codRef->codigoprivado }}"
+                            style="width: 150px !important;" readonly>
 
-                <div class="form-group">
-
-
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="p-2 bg-info rounded-left">http://LearnStream.com/</span>
-                        </div>
-                        <input type="text" class="form-control" id="inputAfiliado" value="{{ $user->code }}"
-                            readonly>
                     </div>
 
-                    @if ($codRef == null)
-                        <form action="{{ route('suscription.desuscribirse') }}" method="POST"
-                            class="flex items-center">
-                            @csrf
-                            <input type="hidden" name="correo" value="{{ $user->email }}">
-                            <input type="hidden" name="nombres" value="{{ $user->name }}">
-                            <button type="submit"
-                                class="btn btn-success text-black"><strong>Desuscribirse</strong></button>
-                        </form>
-                    @else
-                        <form action="{{ route('suscription.desuscribirse') }}" method="POST"
-                            class="flex items-center">
-                            @csrf
-                            <input type="hidden" name="correo" value="{{ $user->email }}">
-                            <input type="hidden" name="nombres" value="{{ $user->name }}">
-                            <button type="submit"
-                                class="btn btn-success text-black"><strong>Desuscribirse</strong></button>
-                        </form>
-                    @endif
+                    <input type="text" class="form-control" name="codigorefpub"
+                        value="{{ $codRef === null ? '' : $codRef->codigopublico }}"
+                        placeholder="Ingresa el codigo que deseas usar">
 
+                    <button type="submit" class="btn btn-success text-black">
+                        <strong>
+                            {{ $botonDescripcion }}
+                        </strong>
+                    </button>
                 </div>
+
+
+
             </form>
+
         </div>
 
 

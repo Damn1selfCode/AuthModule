@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\AcademyController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\WelcomeController;
-use App\Http\Controllers\SoporteController;
+use App\Http\Controllers\{
+    AcademyController,
+    ProfileController,
+    WelcomeController,
+    SoporteController,
+};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,10 +33,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::delete('/profile/deactivate/{user}', 'App\Http\Controllers\ProfileController@deactivate')->name('profile.deactivate');
 });
-
-
-Route::post('/suscription/suscribirse', 'App\Http\Controllers\SubscriptionController@suscribirse')->name('suscription.suscribirse');
-Route::post('/suscription/desuscribirse', 'App\Http\Controllers\SubscriptionController@desuscribirse')->name('suscription.desuscribirse');
 
 
 Route::post('/suscription/suscribirse', 'App\Http\Controllers\SubscriptionController@suscribirse')->name('suscription.suscribirse');
@@ -92,3 +90,6 @@ Route::post('/soporte/lectura-ticket/{id}', 'App\Http\Controllers\SoporteControl
 Route::post('/soporte/enviar-a-papelera', 'App\Http\Controllers\SoporteController@enviarAPapelera')->name('soporte.enviar-a-papelera');
 Route::post('/soporte/recuperar-de-papelera', 'App\Http\Controllers\SoporteController@recuperarDePapelera')->name('soporte.recuperar-de-papelera');
 
+
+Route::post('/CodigoRefererido/generar', 'App\Http\Controllers\CodigoRefereridoController@generar_CodigoReferido')->name('codigo.generar');
+Route::post('/CodigoRefererido/actualizar', 'App\Http\Controllers\CodigoRefereridoController@actualizar_CodigoReferido')->name('codigo.actualizar');

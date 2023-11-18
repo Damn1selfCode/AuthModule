@@ -17,6 +17,7 @@ class Soporte extends Model
         'adjuntos',
         'tipo',
         'papelera', // Asegúrate de agregar 'papelera' en $fillable
+        'fecha_soporte',
     ];
 
     public function remitenteRelacion()
