@@ -5,6 +5,7 @@ use App\Http\Controllers\{
     ProfileController,
     WelcomeController,
     SoporteController,
+    SuscripcionController,
 };
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+
+Route::get('/suscripcion', [SuscripcionController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -47,10 +50,12 @@ Route::get('/usuarios', function () {
     $plans = app(WelcomeController::class)->planes();
     $user = auth()->user(); // Obtener el usuario autenticado
     $suscripcion = ($user->suscripcion === null) ? 0 : $user->suscripcion->suscripcion;
+    $referido = app(SuscripcionController::class)->index($user->id);
+    dd($referido);
     $codRef = ($user->CodRef === null) ? null : $user->CodRef;
     $user->code = 'sadasd';
     //DD($user);
-    return view('usuarios', compact('user', 'plans', 'suscripcion', 'codRef'));
+    return view('usuarios', compact('user', 'plans', 'suscripcion', 'codRef', 'referido'));
 })->middleware('verified')
     ->name('usuarios');
 

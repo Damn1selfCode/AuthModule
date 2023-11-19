@@ -22,7 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
-        'role',//nuevo agregar
+        'role', //nuevo agregar
         'profile_image'
     ];
 
@@ -75,6 +75,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(CodigoReferido::class, 'user_id', 'id');
     }
+
 
     // public function suscrip()
     // {
