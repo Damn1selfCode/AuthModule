@@ -2,56 +2,55 @@
 
 @section('title', 'Dashboard')
 
-@section('content_header')
-
-@stop
 
 @section('content')
 
+
     <div class="content-wrapper" style="min-height: 1058.31px;">
 
-        <!-- Mostrar mensaje de éxito -->
-        @if (session('success'))
+        <!-- Mostrar mensajes -->
+        @if (session()->has('success'))
             <div class="alert alert-success" id="success-message">
                 {{ session('success') }}
             </div>
         @endif
-        <!-- Mostrar mensaje de error -->
-        @if (session('error'))
+        @if (session()->has('error'))
             <div class="alert alert-danger" id="error-message">
                 {{ session('error') }}
             </div>
         @endif
-
-        <!-- Mostrar mensaje de advertencia -->
-        @if (session('warning'))
+        @if (session()->has('warning'))
             <div class="alert alert-warning" id="warning-message">
                 {{ session('warning') }}
             </div>
         @endif
+
         <!-- Main content -->
         <section class="content">
 
             <div class="container-fluid">
-                Hola
-                {{-- <div class="row">
-                    @include('red.redSubs')
-                </div> --}}
-
+                <div id="summary" class="tree_main">
+                    <ul id="organigrama">
+                        @include('red.partials.node', ['node' => $tree])
+                    </ul>
+                </div>
             </div>
 
         </section>
         <!-- /.content -->
 
     </div>
+
 @stop
 
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
 
 @section('js')
+
+    <link rel="stylesheet" href="css/jquery.jOrgChart.css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.jOrgChart.js"></script>
+    {{-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script> --}}
 
     <script>
         // Función para ocultar mensajes después de un tiempo
@@ -64,15 +63,26 @@
             }, duration);
         }
 
-        // Ocultar el mensaje de éxito después de 5 segundos
+        // Ocultar mensajes después de 5 segundos
         document.addEventListener('DOMContentLoaded', function() {
             hideMessage('success-message', 2500);
             hideMessage('error-message', 2500);
             hideMessage('warning-message', 2500);
         });
-    </script>
-@stop
 
-@section('scripts')
+        var treeData = {!! json_encode($tree) !!};
+        console.log(treeData);
+        var orgchartData = {
+            'data': treeData
+        };
+
+        // Inicializa jOrgChart
+        $(document).ready(function() {
+            $("#organigrama").jOrgChart({
+                chartElement: "#organigrama",
+                dragAndDrop: false,
+            });
+        });
+    </script>
 
 @endsection
