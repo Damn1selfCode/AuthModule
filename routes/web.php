@@ -6,7 +6,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\SoporteController;
 use App\Http\Controllers\SuscripcionController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\RedController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -75,63 +75,8 @@ Route::get('/plan', function () {
 })->middleware(['verified'])
     ->name('plan');
 
-Route::get('/mired', function () {
+Route::get('/mired', [RedController::class, 'MiRed'])->name('red.mired');
 
-    $tree = [
-        'name' => 'Raíz',
-        'image_url' => 'https://example.com/root-image.jpg',
-        'code' => 'R001',
-        'children' => [
-            [
-                'name' => 'Hijo 1',
-                'image_url' => 'https://example.com/child1-image.jpg',
-                'code' => 'C001',
-                'children' => [
-                    [
-                        'name' => 'Nieto 1',
-                        'image_url' => 'https://example.com/grandchild1-image.jpg',
-                        'code' => 'GC001',
-                    ],
-                    [
-                        'name' => 'Nieto 2',
-                        'image_url' => 'https://example.com/grandchild2-image.jpg',
-                        'code' => 'GC002',
-                    ],
-                ],
-            ],
-            [
-                'name' => 'Hijo 2',
-                'image_url' => 'https://example.com/child2-image.jpg',
-                'code' => 'C002',
-                'children' => [
-                    [
-                        'name' => 'Nieto 3',
-                        'image_url' => 'https://example.com/grandchild3-image.jpg',
-                        'code' => 'GC003',
-                    ],
-                    [
-                        'name' => 'Nieto 4',
-                        'image_url' => 'https://example.com/grandchild4-image.jpg',
-                        'code' => 'GC004',
-                    ],
-                    [
-                        'name' => 'Nieto 55',
-                        'image_url' => 'https://example.com/grandchild3-image.jpg',
-                        'code' => 'GC003',
-                    ],
-                    [
-                        'name' => 'Nieto 64',
-                        'image_url' => 'https://example.com/grandchild4-image.jpg',
-                        'code' => 'GC004',
-                    ],
-                ],
-            ],
-        ],
-    ];
-
-    return view('mired', ['tree' => $tree]);
-})->middleware(['verified'])
-    ->name('mired');
 
 //material de promocion
 Route::get('/material', function () {

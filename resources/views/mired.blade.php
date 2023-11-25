@@ -31,7 +31,9 @@
             <div class="container-fluid">
                 <div id="summary" class="tree_main">
                     <ul id="organigrama">
-                        @include('red.partials.node', ['node' => $tree])
+                        @if (!empty($tree))
+                            @include('red.partials.node', ['node' => $tree])
+                        @endif
                     </ul>
                 </div>
             </div>

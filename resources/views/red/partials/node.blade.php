@@ -7,20 +7,19 @@
 </br>
 @if ($node)
     <script>
-        console.log(@json($node));
+        console.log('Node structure:', {!! json_encode($node) !!});
     </script>
 
-    <li style="display:none; text-align: center !important;">
-
-        <div style="border: 1px solid #ccc; padding: 10px; margin: 5px; text-align: center !important;">
+    <li style="display:none">
+        <div style="border: 1px solid #ccc; padding: 20px; margin: 5px;">
             <img src="{{ $node['image_url'] }}" alt="{{ $node['name'] }}"
-                style="max-width: 50px; max-height: 50px; margin-right: 10px; display: block; margin: 0 auto;">
+                style="max-width: 100px; max-height: 100px; margin-right: 10px;">
             <span>{{ $node['name'] }}</span>
-            <p>Código: {{ $node['code'] }}</p>
+            {{-- <p>Código: {{ $node['plan_id'] }}</p> --}}
         </div>
 
         @if (!empty($node['children']))
-            <ul style="text-align: center !important;">
+            <ul>
                 @foreach ($node['children'] as $child)
                     @include('red.partials.node', ['node' => $child])
                 @endforeach
