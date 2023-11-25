@@ -9,9 +9,12 @@ class RedController extends Controller
 {
     public function MiRed()
     {
+
+        $user = auth()->user();
+        // dd($user->id);
         $Nivel0 = DB::table('subscriptions')
             ->leftJoin('users', 'subscriptions.user_id', '=', 'users.id')
-            ->where('subscriptions.user_id', '=', 13)
+            ->where('subscriptions.user_id', '=', $user->id)
             ->select(
                 'users.id as id_hijo',
                 'users.name',
@@ -23,7 +26,7 @@ class RedController extends Controller
             ->get();
         $Nivel1 = DB::table('subscriptions')
             ->leftJoin('users', 'subscriptions.user_id', '=', 'users.id')
-            ->where('subscriptions.big_user_id', '=', 13)
+            ->where('subscriptions.big_user_id', '=', $user->id)
             ->select(
                 'users.id as id_hijo',
                 'users.name',

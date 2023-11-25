@@ -75,7 +75,7 @@ Route::get('/plan', function () {
 })->middleware(['verified'])
     ->name('plan');
 
-Route::get('/mired', [RedController::class, 'MiRed'])->name('red.mired');
+Route::get('/mired', [RedController::class, 'MiRed'])->middleware('verified')->name('red.mired');
 
 
 //material de promocion
