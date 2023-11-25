@@ -4,6 +4,7 @@ use App\Http\Controllers\AcademyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\SoporteController;
+use App\Http\Controllers\SuscripcionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +33,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile/deactivate/{user}', 'App\Http\Controllers\ProfileController@deactivate')->name('profile.deactivate');
 });*/
 
+
+Route::get('/suscripcion', [SuscripcionController::class, 'index']);
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -51,8 +55,8 @@ Route::get('/usuarios', function () {
     $plans = app(WelcomeController::class)->planes();
     $user = auth()->user(); // Obtener el usuario autenticado
     $suscripcion = ($user->suscripcion === null) ? 0 : $user->suscripcion->suscripcion;
-    $user->code = hash('sha256', $user->email);
-    return view('usuarios', compact('user', 'plans', 'suscripcion'));
+    $referido = app(SuscripcionController::class)->index($user->id);
+    return view('usuarios', compact('user', 'plans', 'suscripcion', 'referido'));
 })->middleware('verified')
     ->name('usuarios');
 
@@ -65,10 +69,16 @@ Route::get('/academy/{ruta_categoria}', [AcademyController::class, 'mostrarCateg
     ->name('academy');
 
 
+
 Route::get('/plan', function () {
     return view('plan');
 })->middleware(['verified'])
     ->name('plan');
+
+Route::get('/mired', function () {
+    return view('mired');
+})->middleware(['verified'])
+    ->name('mired');
 
 //material de promocion
 Route::get('/material', function () {
@@ -91,3 +101,7 @@ Route::get('/soporte/lectura-ticket/{id}/{origen?}', 'App\Http\Controllers\Sopor
 Route::post('/soporte/lectura-ticket/{id}', 'App\Http\Controllers\SoporteController@lecturaTicket');
 Route::post('/soporte/enviar-a-papelera', 'App\Http\Controllers\SoporteController@enviarAPapelera')->name('soporte.enviar-a-papelera');
 Route::post('/soporte/recuperar-de-papelera', 'App\Http\Controllers\SoporteController@recuperarDePapelera')->name('soporte.recuperar-de-papelera');
+
+
+Route::post('/CodigoRefererido/generar', 'App\Http\Controllers\CodigoRefereridoController@generar_CodigoReferido')->name('codigo.generar');
+Route::post('/CodigoRefererido/actualizar', 'App\Http\Controllers\CodigoRefereridoController@actualizar_CodigoReferido')->name('codigo.actualizar');

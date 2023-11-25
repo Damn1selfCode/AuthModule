@@ -1,7 +1,8 @@
 @vite('resources/css/app.css')
+
 @php
-    $action = $codRef == null ? route('codigo.generar') : route('codigo.actualizar');
-    $botonDescripcion = $codRef == null ? 'Generar' : 'Actualizar';
+    $action = $user->CodRef === null ? route('codigo.generar') : route('codigo.actualizar');
+    $botonDescripcion = $user->CodRef === null ? 'Generar' : 'Actualizar';
     $codigopriv = strtoupper(
         implode(
             '',
@@ -45,7 +46,7 @@
                         </div>
 
                         <input type="text" class="form-control" name="codigorefpub"
-                            value="{{ $codRef === null ? '' : $codRef->codigopublico }}"
+                            value="{{ $user->CodRef === null ? '' : $user->CodRef->codigopublico }}"
                             placeholder="Ingresa el codigo que deseas usar">
 
                         <button type="submit" class="btn btn-success text-black">

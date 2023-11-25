@@ -302,7 +302,7 @@ return [
 
         [
             'text' => 'profile',
-            'url'  => 'usuarios',
+            'url'  => '/usuarios',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
@@ -314,25 +314,19 @@ return [
         [
             'text'    => 'Mi red',
             'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-
-            ],
+            'url'  => '/mired',
         ],
-        [
-            'text'    => 'Ingresos',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
+        // [
+        //     'text'    => 'Ingresos',
+        //     'icon'    => 'fas fa-fw fa-share',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'level_one',
+        //             'url'  => '#',
+        //         ],
 
-            ],
-        ],
+        //     ],
+        // ],
         //modificar
         [
             'text' => 'Plan de Compensación',
