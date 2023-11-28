@@ -1,3 +1,89 @@
+
+
+
+# Descargar Repositorio con Git
+
+1. Ir al repositorio del Proyecto [AuthModule](https://github.com/Damn1selfCode/AuthModule) o ejecutar los siguientes comandos en la terminal:
+
+```bash
+# Iniciar un nuevo repositorio Git (solo si no existe)
+git init
+
+# Clonar el repositorio
+git clone https://github.com/Damn1selfCode/AuthModule.git
+
+# Listar archivos en el directorio
+ls
+
+# Cambiar al directorio AuthModule
+cd .\AuthModule\
+
+# Actualizar el repositorio local con la última versión de main
+git pull origin main
+
+
+2.Visual Studio Code:
+
+# Abrir el directorio en Visual Studio Code
+code ...
+
+# Instalar dependencias con Composer
+composer install
+
+# Actualizar dependencias con Composer
+composer update --with-all-dependencies
+
+# Instalar create-vite para npm
+npm install --save-dev create-vite
+
+
+
+# Configurar el archivo .env
+
+## Apartado PayPal
+
+- **Admin Sandbox:** [https://sandbox.paypal.com](https://sandbox.paypal.com)
+  - **Clave:** learnstream
+
+- **Usuarios Sandbox:**
+  - sb-a43xio27572365@personal.example.com
+  - sb-nipno27583990@personal.example.com
+  - sb-yjbni27572516@personal.example.com
+  - sb-yjbni27572516@personal.example.com
+
+- **Usuario Admin:** sb-qypat27639498@business.example.com
+
+
+
+## Apartado Mailtrap
+
+- [Mailtrap](https://mailtrap.io/email-sandbox/)
+
+## Apartado Database MySQL
+
+Restaurar la base de datos "authmodulev1" y configurar el archivo .env:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=authmodulev1
+DB_USERNAME=root
+DB_PASSWORD=PASSWORD
+
+# Iniciar la Aplicación
+
+Ejecutar los siguientes comandos en la terminal:
+
+```bash
+# Compilar assets con npm
+npm run dev
+
+# Iniciar el servidor Laravel
+php artisan serve
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
